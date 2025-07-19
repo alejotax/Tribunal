@@ -110,9 +110,7 @@ function renderInfographics(section) {
                     <button class="action-btn" onclick="editInfographic(${infographic.id}, '${section}')" title="Editar">
                         <i class="fas fa-edit"></i>
                     </button>
-                    <button class="action-btn" onclick="deleteInfographic(${infographic.id}, '${section}')" title="Eliminar">
-                        <i class="fas fa-trash"></i>
-                    </button>
+
                 </div>
             </div>
             ${infographic.description ? `<p class="infographic-description">${escapeHtml(infographic.description)}</p>` : ''}
@@ -302,19 +300,7 @@ function updateInfographic(id) {
     showNotification('Infografía actualizada exitosamente', 'success');
 }
 
-// Eliminar infografía
-function deleteInfographic(id, section) {
-    if (!confirm('¿Estás seguro de que quieres eliminar esta infografía?')) {
-        return;
-    }
-    
-    infographics[section] = infographics[section].filter(inf => inf.id !== id);
-    saveToLocalStorage();
-    renderInfographics(section);
-    updateCounters();
-    
-    showNotification('Infografía eliminada exitosamente', 'success');
-}
+
 
 // Actualizar contadores
 function updateCounters() {
@@ -335,7 +321,7 @@ function loadInfographics() {
     } else {
         // Agregar infografías de ejemplo si no hay datos guardados
         
-        // Infografía del Contribuyente
+        // Infografía del Contribuyente - Art. 13 CDI
         infographics.contributor.push({
             id: Date.now(),
             title: "Análisis del Caso: Art. 13 CDI Colombia-UK",
@@ -633,7 +619,172 @@ function loadInfographics() {
             createdAt: new Date().toISOString()
         });
         
-        // Infografía de la DIAN
+        // Infografía del Contribuyente - Impuesto al Patrimonio
+        infographics.contributor.push({
+            id: Date.now() + 2,
+            title: "Defensa del Contribuyente: Impuesto al Patrimonio",
+            description: "Infografía que presenta los argumentos del contribuyente sobre la deducibilidad de pasivos del exterior en el impuesto al patrimonio. Demuestra dos pilares: la ley interna permisiva y la cláusula de no discriminación del CDI.",
+            code: `<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Argumento Contribuyente: Impuesto al Patrimonio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+        .flow-step {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+        }
+        .flow-arrow::after {
+            content: '➔';
+            font-size: 2.5rem;
+            color: #0094D1;
+            margin: 0 1rem;
+        }
+        @media (max-width: 768px) {
+            .flow-arrow::after {
+                 content: '⬇';
+                 margin: 1rem 0;
+            }
+            .flow-step {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body class="bg-[#F0F9FF]">
+    <div class="container mx-auto p-4 md:p-8 max-w-6xl">
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-extrabold text-[#004AAD] mb-2">Defensa del Contribuyente: Impuesto al Patrimonio</h1>
+            <p class="text-lg md:text-xl font-medium text-[#0094D1]">Deducibilidad de Pasivos del Exterior y la Cláusula de No Discriminación</p>
+        </header>
+        <main class="space-y-16">
+            <section id="core_question" class="bg-white rounded-lg shadow-xl p-6 md:p-8 text-center">
+                <h2 class="text-3xl font-bold text-[#004AAD] mb-4">La Pregunta Fundamental</h2>
+                <p class="text-xl text-gray-700 max-w-3xl mx-auto">
+                    ¿Puede un pasivo contraído en el exterior, por parte de un contribuyente extranjero, ser restado de la base gravable del impuesto al patrimonio en Colombia?
+                </p>
+                <p class="text-6xl font-extrabold text-green-600 mt-6">SÍ.</p>
+                <p class="text-lg text-gray-600">(Y la respuesta se fundamenta en dos pilares independientes)</p>
+            </section>
+            
+            <section id="internal_law" class="bg-white rounded-lg shadow-xl p-6 md:p-8">
+                <h2 class="text-3xl font-bold text-[#004AAD] mb-8 text-center">Pilar 1: La Ley Interna es Clara y Permisiva</h2>
+                <p class="text-center text-gray-700 mb-10 max-w-3xl mx-auto">
+                    La propia legislación tributaria colombiana, sin necesidad de recurrir a tratados, permite la deducción. Una interpretación restrictiva carece de sustento legal.
+                </p>
+                <div class="flex flex-col md:flex-row items-stretch justify-center flex-wrap">
+                    <div class="flow-step p-4 m-2 flex-1 min-w-[220px] flow-arrow">
+                        <div class="bg-[#B3E2F3] p-4 rounded-lg shadow-md h-full">
+                            <p class="font-bold text-[#004AAD] text-lg">Art. 295-3 E.T.</p>
+                            <p class="text-sm text-gray-800">La base gravable es el patrimonio bruto <span class="font-bold">menos las deudas</span> vigentes.</p>
+                        </div>
+                    </div>
+                    <div class="flow-step p-4 m-2 flex-1 min-w-[220px] flow-arrow">
+                        <div class="bg-[#B3E2F3] p-4 rounded-lg shadow-md h-full">
+                            <p class="font-bold text-[#004AAD] text-lg">Remisión al Título II</p>
+                            <p class="text-sm text-gray-800">La norma remite a las definiciones generales de deudas para efectos fiscales.</p>
+                        </div>
+                    </div>
+                    <div class="flow-step p-4 m-2 flex-1 min-w-[220px]">
+                       <div class="bg-[#78C9E6] p-4 rounded-lg shadow-lg h-full">
+                            <p class="font-bold text-[#004AAD] text-lg">Art. 283 E.T.</p>
+                            <p class="text-sm text-gray-800">Define las deudas como obligaciones presentes, <span class="font-bold">sin distinguir su origen</span> nacional o internacional.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-10 text-center">
+                    <p class="font-semibold text-red-600">Excluir pasivos del exterior vulnera los principios de <span class="font-bold">Legalidad</span> (la ley no lo prohíbe) y <span class="font-bold">Capacidad Contributiva</span> (grava un patrimonio irreal).</p>
+                </div>
+            </section>
+            
+            <section id="dta_argument" class="bg-white rounded-lg shadow-xl p-6 md:p-8">
+                <h2 class="text-3xl font-bold text-[#004AAD] mb-6 text-center">Pilar 2 (Subsidiario): El CDI Prohíbe la Discriminación</h2>
+                <p class="text-center text-gray-700 mb-8 max-w-3xl mx-auto">
+                    Incluso si, en gracia de discusión, la ley interna se interpretara de forma restrictiva, el Convenio con el Reino Unido actuaría como un escudo, impidiendo el cobro del impuesto.
+                </p>
+                <div class="bg-blue-50 border-l-8 border-[#0094D1] p-6 rounded-lg">
+                    <h3 class="font-bold text-xl text-[#004AAD] mb-3">Artículo 23: No Discriminación</h3>
+                    <blockquote class="text-lg text-gray-800 italic">
+                        "Los nacionales de un Estado Contratante <span class="font-bold not-italic text-[#004AAD]">no estarán sometidos en el otro Estado Contratante a ninguna imposición u obligación [...] más gravosa</span> que aquellas a las que estén o puedan estar sometidos los nacionales de ese otro Estado que se encuentren en las mismas condiciones..."
+                    </blockquote>
+                </div>
+            </section>
+
+            <section id="discrimination_visual" class="bg-white rounded-lg shadow-xl p-6 md:p-8">
+                <h2 class="text-3xl font-bold text-[#004AAD] mb-8 text-center">Visualizando el Trato Discriminatorio</h2>
+                <p class="text-center text-gray-700 mb-8 max-w-3xl mx-auto">
+                    Exigir el impuesto al contribuyente del Reino Unido, cuando una sociedad colombiana en idénticas circunstancias no lo pagaría, es una clara violación del Artículo 23 del CDI.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="bg-green-50 border border-green-300 p-6 rounded-lg text-center">
+                        <h3 class="font-bold text-lg text-green-800 mb-3">Sociedad Nacional Colombiana</h3>
+                        <p class="text-4xl mb-4">🇨🇴</p>
+                        <p class="text-gray-700">No estaría sujeta al impuesto al patrimonio en las mismas condiciones.</p>
+                        <p class="text-green-700 font-bold text-2xl mt-4">No Paga</p>
+                    </div>
+                     <div class="bg-red-50 border border-red-300 p-6 rounded-lg text-center">
+                        <h3 class="font-bold text-lg text-red-700 mb-3">Residente Fiscal del Reino Unido</h3>
+                        <p class="text-4xl mb-4">🇬🇧</p>
+                        <p class="text-gray-700">Se le pretende exigir el impuesto, imponiendo una carga más gravosa.</p>
+                        <p class="text-red-600 font-bold text-2xl mt-4">¿Obligado a Pagar?</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="conclusion" class="bg-[#004AAD] text-white rounded-lg shadow-xl p-6 md:p-8">
+                <h2 class="text-3xl font-bold mb-6 text-center">Dos Caminos, Una Conclusión</h2>
+                <div class="text-center">
+                    <div class="flex flex-col md:flex-row justify-center items-center text-center">
+                        <div class="p-4 m-2 rounded-lg bg-sky-700">
+                            <p class="font-bold">Vía Ley Interna</p>
+                            <p class="text-sm">(Art. 295-3 y 283 E.T.)</p>
+                        </div>
+                        <p class="text-4xl mx-4 font-thin hidden md:block">🤝</p>
+                        <div class="p-4 m-2 rounded-lg bg-sky-700">
+                            <p class="font-bold">Vía CDI UK-Colombia</p>
+                            <p class="text-sm">(Art. 23 No Discriminación)</p>
+                        </div>
+                    </div>
+                    <p class="text-4xl my-4">⬇</p>
+                    <div class="p-6 rounded-lg bg-green-600 text-white">
+                        <p class="font-extrabold text-2xl">El contribuyente NO está obligado al pago del impuesto al patrimonio.</p>
+                    </div>
+                </div>
+                <div class="mt-8 border-t border-blue-400 pt-6">
+                    <p class="text-center text-lg">Por tanto, ya sea con fundamento en la legislación interna o con base en el CDI, solicitamos se acoja la tesis aquí expuesta y se reconozca que no existe obligación tributaria.</p>
+                </div>
+            </section>
+        </main>
+        
+        <footer class="text-center mt-12 py-4">
+            <p class="text-xs text-gray-600">
+                Esta infografía es una representación visual de los argumentos del contribuyente y tiene fines informativos. Creada el 19 de julio de 2025.
+            </p>
+        </footer>
+    </div>
+
+    <script>
+        // No se requiere JS para esta infografía, ya que no utiliza gráficos de Chart.js.
+    </script>
+</body>
+</html>`,
+            createdAt: new Date().toISOString()
+        });
+        
+        // Infografía de la DIAN - Art. 13 CDI
         infographics.dian.push({
             id: Date.now() + 1,
             title: "La Posición de la DIAN: Art. 13 CDI",
@@ -841,6 +992,190 @@ function loadInfographics() {
                 }
             }
         });
+    </script>
+</body>
+</html>`,
+            createdAt: new Date().toISOString()
+        });
+        
+        // Infografía de la DIAN - Impuesto al Patrimonio
+        infographics.dian.push({
+            id: Date.now() + 3,
+            title: "Posición de la DIAN: Impuesto al Patrimonio",
+            description: "Infografía que presenta la posición oficial de la DIAN sobre el impuesto al patrimonio. Demuestra la sujeción pasiva, el principio de territorialidad y por qué no aplica la cláusula de no discriminación del CDI.",
+            code: `<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Posición DIAN: Impuesto al Patrimonio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+        .flow-step {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+        }
+        .flow-arrow::after {
+            content: '➔';
+            font-size: 2.5rem;
+            color: #0094D1;
+            margin: 0 1rem;
+        }
+        @media (max-width: 768px) {
+            .flow-arrow::after {
+                 content: '⬇';
+                 margin: 1rem 0;
+            }
+            .flow-step {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body class="bg-[#F0F9FF]">
+    <div class="container mx-auto p-4 md:p-8 max-w-6xl">
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-extrabold text-[#004AAD] mb-2">Posición de la DIAN: Impuesto al Patrimonio</h1>
+            <p class="text-lg md:text-xl font-medium text-[#0094D1]">Sujeción Pasiva, Territorialidad y Aplicación del CDI</p>
+        </header>
+        <main class="space-y-16">
+            <section id="legal_foundation" class="bg-white rounded-lg shadow-xl p-6 md:p-8">
+                <h2 class="text-3xl font-bold text-[#004AAD] mb-8 text-center">1. La Sujeción Pasiva es Incontrovertible</h2>
+                <p class="text-center text-gray-700 mb-10 max-w-3xl mx-auto">
+                    La Ley 2277 de 2022 establece con claridad los supuestos para que un no residente sea sujeto pasivo del impuesto al patrimonio. El contribuyente cumple todas las condiciones.
+                </p>
+                <div class="flex flex-col md:flex-row items-stretch justify-center flex-wrap">
+                    <div class="flow-step p-4 m-2 flex-1 min-w-[220px] flow-arrow">
+                        <div class="bg-[#B3E2F3] p-4 rounded-lg shadow-md h-full">
+                            <p class="font-bold text-[#004AAD] text-lg">Sujeto No Residente</p>
+                            <p class="text-sm text-gray-800">HMI es una entidad extranjera sin residencia fiscal en Colombia.</p>
+                        </div>
+                    </div>
+                    <div class="flow-step p-4 m-2 flex-1 min-w-[220px] flow-arrow">
+                        <div class="bg-[#B3E2F3] p-4 rounded-lg shadow-md h-full">
+                            <p class="font-bold text-[#004AAD] text-lg">Patrimonio en Colombia</p>
+                            <p class="text-sm text-gray-800">Posee activos ubicados en el país al 1° de enero de 2023.</p>
+                        </div>
+                    </div>
+                    <div class="flow-step p-4 m-2 flex-1 min-w-[220px]">
+                       <div class="bg-[#78C9E6] p-4 rounded-lg shadow-lg h-full">
+                            <p class="font-bold text-[#004AAD] text-lg">Supera el Umbral</p>
+                            <p class="text-sm text-gray-800">El valor de dicho patrimonio excede las 72.000 UVT.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-10 text-center p-4 bg-green-100 border border-green-300 rounded-lg">
+                    <p class="font-semibold text-green-800 text-xl">Conclusión: La sujeción pasiva de HMI al impuesto está plenamente configurada.</p>
+                </div>
+            </section>
+            
+            <section id="systematic_interpretation" class="bg-white rounded-lg shadow-xl p-6 md:p-8">
+                <h2 class="text-3xl font-bold text-[#004AAD] mb-8 text-center">2. El Principio de Territorialidad: El Vínculo Indivisible</h2>
+                <p class="text-center text-gray-700 mb-8 max-w-3xl mx-auto">
+                    La ley debe leerse de forma sistemática. Si la tributación se limita al patrimonio en Colombia, las deducciones deben seguir la misma lógica territorial.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-center text-center">
+                    <div class="bg-blue-50 p-6 rounded-lg h-full">
+                        <h3 class="font-bold text-lg text-[#004AAD]">Base Gravable (Art. 292-3)</h3>
+                        <p class="text-gray-700 mt-2">Los no residentes tributan <span class="font-bold">únicamente sobre el patrimonio poseído en Colombia.</span></p>
+                    </div>
+                    <div class="text-6xl text-sky-500 font-bold">
+                        🔗
+                    </div>
+                    <div class="bg-blue-50 p-6 rounded-lg h-full">
+                        <h3 class="font-bold text-lg text-[#004AAD]">Deudas Deducibles (Art. 295-3)</h3>
+                        <p class="text-gray-700 mt-2">Por tanto, solo pueden restarse las deudas <span class="font-bold">asociadas a dicho patrimonio</span> y operaciones locales.</p>
+                    </div>
+                </div>
+                <div class="mt-10 text-center p-4 bg-red-100 border border-red-300 rounded-lg">
+                    <p class="font-semibold text-red-700 text-lg">Permitir la deducción de un pasivo externo no vinculado erosiona la base gravable y viola el principio de territorialidad del impuesto.</p>
+                </div>
+            </section>
+            
+            <section id="dta_rejection" class="bg-white rounded-lg shadow-xl p-6 md:p-8">
+                <h2 class="text-3xl font-bold text-[#004AAD] mb-6 text-center">3. ¿Por qué no aplica la Cláusula de No Discriminación?</h2>
+                <p class="text-center text-gray-700 mb-8 max-w-3xl mx-auto">
+                    El argumento del contribuyente sobre el Artículo 23 del CDI es improcedente por dos razones fundamentales y autónomas.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="bg-gray-100 p-6 rounded-lg text-center">
+                        <p class="text-5xl mb-4">📄</p>
+                        <h3 class="font-bold text-lg text-gray-800">Impuesto No Cubierto</h3>
+                        <p class="text-gray-600">El impuesto al patrimonio <span class="font-bold">no está expresamente listado</span> en el Artículo 2 del Convenio. Su naturaleza es distinta a los impuestos sobre la renta, por lo que la cláusula de no discriminación no se extiende automáticamente.</p>
+                    </div>
+                     <div class="bg-gray-100 p-6 rounded-lg text-center">
+                        <p class="text-5xl mb-4">➗</p>
+                        <h3 class="font-bold text-lg text-gray-800">No Existe Discriminación</h3>
+                        <p class="text-gray-600">No se cumplen los supuestos fácticos. La comparación relevante no es entre un residente del UK y un residente de Colombia, sino <span class="font-bold">entre no residentes</span>, quienes reciben el mismo trato.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="correct_comparison" class="bg-white rounded-lg shadow-xl p-6 md:p-8">
+                <h2 class="text-3xl font-bold text-[#004AAD] mb-8 text-center">La Comparación Correcta</h2>
+                <p class="text-center text-gray-700 mb-8 max-w-3xl mx-auto">
+                    La cláusula de no discriminación protege contra un trato desfavorable por razón de nacionalidad. Aquí, el tratamiento es idéntico para todos los no residentes, sin importar su origen.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                    <div class="bg-blue-50 p-4 rounded-lg">
+                        <h3 class="font-bold text-lg text-blue-800">Residente UK 🇬🇧</h3>
+                        <p class="mt-2">Tributa sobre patrimonio en CO.</p>
+                        <p>No deduce pasivos externos.</p>
+                    </div>
+                    <div class="bg-blue-50 p-4 rounded-lg">
+                        <h3 class="font-bold text-lg text-blue-800">Residente USA 🇺🇸</h3>
+                        <p class="mt-2">Tributa sobre patrimonio en CO.</p>
+                        <p>No deduce pasivos externos.</p>
+                    </div>
+                    <div class="bg-blue-50 p-4 rounded-lg">
+                        <h3 class="font-bold text-lg text-blue-800">Residente Japón 🇯🇵</h3>
+                        <p class="mt-2">Tributa sobre patrimonio en CO.</p>
+                        <p>No deduce pasivos externos.</p>
+                    </div>
+                </div>
+                <p class="text-center text-xl font-bold text-green-700 mt-8">Resultado: Tratamiento Idéntico = No Hay Discriminación</p>
+            </section>
+
+            <section id="conclusion" class="bg-[#004AAD] text-white rounded-lg shadow-xl p-6 md:p-8">
+                <h2 class="text-3xl font-bold mb-6 text-center">Solicitud al Tribunal</h2>
+                <p class="text-center text-lg mb-8">Con base en los argumentos expuestos, la DIAN solicita respetuosamente que se confirme la legalidad del acto administrativo en disputa.</p>
+                <ol class="space-y-4">
+                    <li class="flex items-start">
+                        <span class="text-2xl text-green-300 mr-4">✔</span>
+                        <p>Se determinó correctamente la <span class="font-bold">sujeción pasiva</span> del contribuyente al impuesto al patrimonio.</p>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-2xl text-green-300 mr-4">✔</span>
+                        <p>Es <span class="font-bold">improcedente restar un pasivo externo</span> no vinculado al patrimonio poseído en Colombia, en virtud del principio de territorialidad.</p>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-2xl text-green-300 mr-4">✔</span>
+                        <p>El Convenio para evitar la doble imposición es <span class="font-bold">inaplicable</span>, al no existir una real situación de discriminación.</p>
+                    </li>
+                </ol>
+            </section>
+        </main>
+        
+        <footer class="text-center mt-12 py-4">
+            <p class="text-xs text-gray-600">
+                Esta infografía es una representación visual de los argumentos de la DIAN y tiene fines informativos. Creada el 19 de julio de 2025.
+            </p>
+        </footer>
+    </div>
+
+    <script>
+        // No se requiere JS para esta infografía.
     </script>
 </body>
 </html>`,

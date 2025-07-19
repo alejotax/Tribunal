@@ -55,6 +55,29 @@ body {
     text-align: center;
 }
 
+.firm-name {
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.firm-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #ffd700;
+    margin-bottom: 0.25rem;
+    letter-spacing: 2px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.firm-subtitle {
+    font-size: 1rem;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.8);
+    margin: 0;
+    letter-spacing: 1px;
+}
+
 .title {
     font-size: 3rem;
     font-weight: 700;
@@ -556,6 +579,14 @@ body {
         gap: 1.5rem;
     }
     
+    .firm-title {
+        font-size: 2rem;
+    }
+    
+    .firm-subtitle {
+        font-size: 0.9rem;
+    }
+    
     .title {
         font-size: 2rem;
         flex-direction: column;
@@ -633,22 +664,12 @@ body {
         padding: 1rem;
     }
     
-    .title {
+    .firm-title {
         font-size: 1.8rem;
     }
     
-    .subtitle {
-        font-size: 1rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .container {
-        padding: 0 15px;
-    }
-    
-    .argument-section {
-        padding: 1.5rem;
+    .firm-subtitle {
+        font-size: 0.8rem;
     }
     
     .title {
