@@ -318,9 +318,10 @@ function loadInfographics() {
     const saved = localStorage.getItem('dian-vs-hmi-infographics');
     if (saved) {
         infographics = JSON.parse(saved);
-    } else {
-        // Agregar infografías de ejemplo si no hay datos guardados
-        
+    }
+    
+    // Siempre agregar las infografías por defecto si no existen
+    if (infographics.contributor.length === 0) {
         // Infografía del Contribuyente - Art. 13 CDI
         infographics.contributor.push({
             id: Date.now(),
@@ -1176,6 +1177,223 @@ function loadInfographics() {
 
     <script>
         // No se requiere JS para esta infografía.
+    </script>
+</body>
+</html>`,
+            createdAt: new Date().toISOString()
+        });
+    }
+    
+    // Siempre agregar las infografías de la DIAN por defecto si no existen
+    if (infographics.dian.length === 0) {
+        // Infografía de la DIAN - Art. 13 CDI
+        infographics.dian.push({
+            id: Date.now() + 1,
+            title: "La Posición de la DIAN: Art. 13 CDI",
+            description: "Infografía que presenta la posición oficial de la DIAN sobre el Artículo 13 del CDI Colombia-UK. Demuestra la aplicación directa y literal de los Comentarios de la OCDE, específicamente el Párrafo 28.4, que establece el método objetivo de cálculo.",
+            code: `<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infografía Posición DIAN: Art. 13 CDI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
+        }
+        .formula-box {
+            background-color: #E0F2FE;
+            border: 2px dashed #0284C7;
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            text-align: center;
+            font-family: 'Courier New', Courier, monospace;
+        }
+         @media (max-width: 768px) {
+            .chart-container {
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+<body class="bg-[#F0F9FF]">
+    <div class="container mx-auto p-4 md:p-8 max-w-6xl">
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-extrabold text-[#004AAD] mb-2">La Posición de la DIAN</h1>
+            <p class="text-lg md:text-xl font-medium text-[#0094D1]">Una Aplicación Directa y Literal del Artículo 13 del CDI</p>
+        </header>
+        <main class="space-y-16">
+            <section id="common_ground" class="bg-white rounded-lg shadow-xl p-6 md:p-8">
+                <h2 class="text-3xl font-bold text-[#004AAD] mb-6 text-center">1. El Punto de Partida Correcto</h2>
+                <div class="flex justify-center items-center">
+                    <p class="text-7xl mr-6">✔</p>
+                    <p class="text-lg text-gray-700 max-w-2xl">
+                        La DIAN concuerda en que la base para la valoración de los activos debe ser el <span class="font-bold">patrimonio contable (NIIF)</span>, y no el patrimonio fiscal. Este enfoque se alinea con el principio de realidad económica. La controversia no radica aquí, sino en el <span class="font-bold">método de cálculo</span> que debe aplicarse a continuación.
+                    </p>
+                </div>
+            </section>
+            
+            <section id="golden_rule" class="bg-white rounded-lg shadow-xl p-6 md:p-8">
+                <h2 class="text-3xl font-bold text-[#004AAD] mb-6 text-center">2. La Regla de Cálculo Decisiva: Párrafo 28.4 OCDE</h2>
+                <p class="text-center text-gray-700 mb-8 max-w-3xl mx-auto">
+                    Los Comentarios de la OCDE no dejan lugar a dudas. El Párrafo 28.4 no solo menciona el "valor de las acciones", sino que <span class="font-bold">explícitamente instruye cómo se debe realizar la prueba</span> para determinar si dicho valor deriva de bienes inmuebles.
+                </p>
+                <div class="bg-blue-50 border-l-8 border-[#0094D1] p-6 rounded-lg">
+                    <blockquote class="text-xl text-gray-800 italic">
+                        "...se determinará [...] <span class="font-bold not-italic text-[#004AAD]">comparando el valor de dichos inmuebles con el de todos los activos propiedad de la sociedad</span> [...] sin tener en cuenta las deudas u otros pasivos..."
+                    </blockquote>
+                    <cite class="block text-right mt-4 text-lg text-[#004AAD] font-semibold">Comentarios al Art. 13, Párrafo 28.4</cite>
+                </div>
+            </section>
+            
+            <section id="formula" class="bg-white rounded-lg shadow-xl p-6 md:p-8">
+                <h2 class="text-3xl font-bold text-[#004AAD] mb-8 text-center">3. La Fórmula Objetiva de la OCDE</h2>
+                <p class="text-center text-gray-700 mb-8 max-w-3xl mx-auto">
+                    El Párrafo 28.4 se traduce en una fórmula matemática directa y objetiva, que no admite métodos de valoración alternativos ni subjetivos.
+                </p>
+                <div class="formula-box text-xl md:text-2xl">
+                    <p class="font-bold text-[#004AAD]">(Valor de Inmuebles)</p>
+                    <p class="font-bold text-2xl md:text-3xl my-2">/</p>
+                    <p class="font-bold text-[#004AAD]">(Valor de TODOS los Activos de la Sociedad)</p>
+                    <p class="font-bold text-2xl md:text-3xl my-2">&gt;</p>
+                    <p class="font-bold text-[#004AAD]">50%</p>
+                </div>
+            </section>
+
+            <section id="application" class="bg-white rounded-lg shadow-xl p-6 md:p-8">
+                <h2 class="text-3xl font-bold text-[#004AAD] mb-8 text-center">4. Aplicación al Caso Concreto</h2>
+                <p class="text-center text-gray-700 mb-8 max-w-3xl mx-auto">
+                    Aplicando la fórmula explícita de la OCDE a los estados financieros (contables) de la compañía, el resultado es inequívoco.
+                </p>
+                <div class="chart-container">
+                    <canvas id="dianChart"></canvas>
+                </div>
+                <p class="text-center text-lg text-gray-800 mt-6">El cálculo arroja que el <span class="font-bold text-2xl text-red-600">67%</span> del valor de los activos totales de la compañía proviene de bienes inmuebles, superando claramente el umbral del 50%.</p>
+            </section>
+            
+            <section id="fallacy" class="bg-white rounded-lg shadow-xl p-6 md:p-8">
+                <h2 class="text-3xl font-bold text-[#004AAD] mb-8 text-center">5. La Falacia del "Valor de la Acción"</h2>
+                 <p class="text-center text-gray-700 mb-8 max-w-3xl mx-auto">El contribuyente intenta desviar la atención hacia métodos de valoración financiera complejos. Sin embargo, estos son irrelevantes cuando el propio Comentario de la OCDE proporciona el método de prueba específico.</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="bg-red-50 border border-red-200 p-6 rounded-lg">
+                        <h3 class="font-bold text-lg text-red-700 mb-3">Argumento del Contribuyente (Incorrecto)</h3>
+                        <p class="text-gray-600">Se debe usar una valoración financiera subjetiva (flujos de caja, múltiplos) para determinar el "valor de la acción".</p>
+                        <p class="text-red-600 font-semibold mt-4">Resultado: Ignora la instrucción explícita del Párrafo 28.4.</p>
+                    </div>
+                     <div class="bg-green-50 border border-green-300 p-6 rounded-lg">
+                        <h3 class="font-bold text-lg text-green-800 mb-3">Posición de la DIAN (Correcta)</h3>
+                        <p class="text-gray-600">Se debe aplicar la prueba objetiva que la propia OCDE establece: comparar el valor de los inmuebles con el de todos los activos.</p>
+                        <p class="text-green-700 font-semibold mt-4">Resultado: Aplicación literal y directa de la norma.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="conclusion" class="bg-[#004AAD] text-white rounded-lg shadow-xl p-6 md:p-8">
+                <h2 class="text-3xl font-bold mb-6 text-center">Conclusión para el Tribunal</h2>
+                <ol class="space-y-4">
+                    <li class="flex items-start">
+                        <span class="text-2xl text-green-300 mr-4">✔</span>
+                        <p>La DIAN aplica la metodología de cálculo <span class="font-bold">explícitamente detallada</span> en los Comentarios de la OCDE (Párrafo 28.4).</p>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-2xl text-green-300 mr-4">✔</span>
+                        <p>El método es <span class="font-bold">objetivo y verificable</span>: una simple comparación del valor de los activos, sin considerar deudas ni pasivos.</p>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-2xl text-green-300 mr-4">✔</span>
+                        <p>La introducción de métodos de valoración financiera alternativos es una complicación innecesaria que <span class="font-bold">contradice la guía de interpretación</span> del Convenio.</p>
+                    </li>
+                    <li class="flex items-start mt-4 border-t border-blue-400 pt-4">
+                        <span class="text-2xl text-white mr-4">⚖️</span>
+                        <p class="font-extrabold text-lg">Por lo tanto, al seguir el procedimiento dictado por la OCDE, se confirma que Colombia tiene plena potestad tributaria sobre esta operación.</p>
+                    </li>
+                </ol>
+            </section>
+        </main>
+        
+        <footer class="text-center mt-12 py-4">
+            <p class="text-xs text-gray-600">
+                Esta infografía es una representación visual de los argumentos de la DIAN y tiene fines informativos. Creada el 19 de julio de 2025.
+            </p>
+        </footer>
+    </div>
+
+    <script>
+        const tooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+                return label.join(' ');
+            }
+            return label;
+        };
+        
+        const wrapLabel = (label, maxLength = 16) => {
+            if (label.length <= maxLength) { return label; }
+            const words = label.split(' ');
+            const lines = [];
+            let currentLine = '';
+            for (const word of words) {
+                if ((currentLine + ' ' + word).trim().length > maxLength) {
+                    lines.push(currentLine.trim());
+                    currentLine = word;
+                } else {
+                    currentLine = (currentLine + ' ' + word).trim();
+                }
+            }
+            if (currentLine) { lines.push(currentLine.trim()); }
+            return lines;
+        };
+
+        const dianCtx = document.getElementById('dianChart').getContext('2d');
+        new Chart(dianCtx, {
+            type: 'pie',
+            data: {
+                labels: ['Valor de Activos Inmuebles', 'Valor de Otros Activos'],
+                datasets: [{
+                    label: 'Composición de Activos Totales',
+                    data: [67, 33],
+                    backgroundColor: ['#004AAD', '#78C9E6'],
+                    borderColor: '#FFFFFF',
+                    borderWidth: 4,
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { position: 'bottom' },
+                    tooltip: { callbacks: { 
+                        title: tooltipTitleCallback,
+                        label: function(context) {
+                            let label = context.label || '';
+                            if (label) {
+                                label += ': ';
+                            }
+                            if (context.parsed !== null) {
+                                label += context.parsed + '%';
+                            }
+                            return label;
+                        }
+                    }}
+                }
+            }
+        });
     </script>
 </body>
 </html>`,
