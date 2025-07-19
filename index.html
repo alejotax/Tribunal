@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DIAN vs HMI - Tribunal Judicial</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <h1 class="title">
+                <i class="fas fa-balance-scale"></i>
+                DIAN vs HMI
+            </h1>
+            <p class="subtitle">Sistema de Organización de Infografías - Tribunal Judicial</p>
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="container">
+            <div class="arguments-grid">
+                <!-- Sección DIAN -->
+                <section class="argument-section dian-section">
+                    <div class="section-header">
+                        <div class="section-icon">
+                            <i class="fas fa-building"></i>
+                        </div>
+                        <h2>Argumentos a Favor de la DIAN</h2>
+                        <div class="section-counter">
+                            <span id="dian-count">0</span> infografías
+                        </div>
+                    </div>
+                    
+                    <div class="infographics-container" id="dian-container">
+                        <div class="placeholder">
+                            <i class="fas fa-plus-circle"></i>
+                            <p>Agregar infografías de la DIAN</p>
+                        </div>
+                    </div>
+                    
+                    <button class="add-btn" onclick="addInfographic('dian')">
+                        <i class="fas fa-plus"></i>
+                        Agregar Infografía
+                    </button>
+                </section>
+
+                <!-- Sección CONTRIBUYENTE -->
+                <section class="argument-section contributor-section">
+                    <div class="section-header">
+                        <div class="section-icon">
+                            <i class="fas fa-user-tie"></i>
+                        </div>
+                        <h2>Argumentos a Favor del CONTRIBUYENTE</h2>
+                        <div class="section-counter">
+                            <span id="contributor-count">0</span> infografías
+                        </div>
+                    </div>
+                    
+                    <div class="infographics-container" id="contributor-container">
+                        <div class="placeholder">
+                            <i class="fas fa-plus-circle"></i>
+                            <p>Agregar infografías del Contribuyente</p>
+                        </div>
+                    </div>
+                    
+                    <button class="add-btn" onclick="addInfographic('contributor')">
+                        <i class="fas fa-plus"></i>
+                        Agregar Infografía
+                    </button>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal para agregar infografías -->
+    <div id="infographic-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Agregar Nueva Infografía</h3>
+                <button class="close-btn" onclick="closeModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <form id="infographic-form">
+                <div class="form-group">
+                    <label for="infographic-title">Título de la Infografía</label>
+                    <input type="text" id="infographic-title" required>
+                </div>
+                <div class="form-group">
+                    <label for="infographic-description">Descripción</label>
+                    <textarea id="infographic-description" rows="3"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="infographic-code">Código de la Infografía</label>
+                    <textarea id="infographic-code" rows="8" placeholder="Pega aquí el código HTML/CSS de tu infografía"></textarea>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn-secondary" onclick="closeModal()">Cancelar</button>
+                    <button type="submit" class="btn-primary">Guardar Infografía</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 DIAN vs HMI - Sistema de Organización Judicial</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html> 
